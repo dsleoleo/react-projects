@@ -9,12 +9,33 @@ class App extends React.Component {
         super();
 
         this.state = {
-            showCreate: false
+            showCreate: false,
+            recipes: [],
+            selectedRecipe: null
         };
     }
 
     showCreate() {
         this.setState({ showCreate: true});
+    }
+    
+    handleCreateRecipe(name, ingredients, instructions) {
+        const newRecipes = this.state.recipes.concat({
+            id: new Date().getTime(),
+            name,
+            ingredients,
+            instructions
+        });
+        this.setState({
+            recipes : newRecipes
+        });
+    }
+
+    handleSelectRecipe(recipe) {
+        this.setState({
+            selectedRecipe: recipe,
+            showCreate: false
+        })
     }
 
     render() {
@@ -29,10 +50,16 @@ class App extends React.Component {
                     >
                         Create new recipe 
                     </button>
-                    <RecipeList />
+                    <RecipeList 
+                        recipes={this.state.recipes}
+                        onSelectRecipe={this.handleSelectRecipe.bind(this)}
+                    />
                 </div>
                 <div className='col-xs-8'>
-                    {this.state.showCreate ? <CreateForm /> : <RecipeDetail />}
+                    {this.state.showCreate ? 
+                    <CreateForm onSubmit={this.handleCreateRecipe.bind(this)} /> : 
+                    <RecipeDetail recipe={this.state.selectedRecipe}/>
+                    }
 
                 </div>
             </div>
