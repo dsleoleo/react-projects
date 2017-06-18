@@ -1,20 +1,39 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import TodoInput from './TodoInput';
 
 class TodoList extends React.Component {
-    render() {
-        const items = [
-            {name: 'First item', done: false}, 
-            {name: 'Second item', done: true},
-            {name: 'Third item', done: false},
-            {name: 'Forth item', done: true}];
+    constructor() {
+        super();
+        this.state = {
+            items: []
+        };
+        
+    }
+    
+    handleAddItem(name) {
+        console.log("TodoList handleAddItem", name, this)
+        const newItems = this.state.items.concat({name: name, done: false});
+        this.setState({ items: newItems });
+    }
+
+    handleToggleDone(item) {
+        const newItems = this.state.items.slice();
+        newItems[newItems.indexOf(item)].done = !item.done;
+        this.setState({items: newItems});
+    }
+
+
+    render() {        
         return (
-        <ul>
-            {
-                items.map(item => <TodoItem name={item.name} done={item.done} />)
-            }            
-            
-        </ul>);
+        <div>
+            <ul>
+                {
+                    this.state.items.map(item => <TodoItem name={item.name} done={item.done} onToggleDone={this.handleToggleDone.bind(this, item)}/>)
+                }                            
+            </ul>
+            <TodoInput onAddItem= {this.handleAddItem.bind(this)} />
+        </div>);
     }
 }
 
