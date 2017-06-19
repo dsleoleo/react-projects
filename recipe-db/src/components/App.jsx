@@ -2,7 +2,7 @@ import React from 'react';
 
 import RecipeDetail from './RecipeDetail';
 import RecipeList from './RecipeList';
-import CreateForm from './CreateForm';
+import CreateEditForm from './CreateEditForm';
 import SearchBox from './SearchBox';
 
 const LOCAL_STORAGE_KEY = 'recipes';
@@ -22,10 +22,10 @@ class App extends React.Component {
     }
 
     showCreate() {
-        this.setState({ showCreate: true});
+        this.setState({ showCreate: true, selectedRecipe : null});
     }
     
-    handleCreateRecipe(name, ingredients, instructions) {
+    handleRecipeCreated(name, ingredients, instructions) {
         const newRecipes = this.state.recipes.concat({
             id: new Date().getTime(),
             name,
@@ -33,6 +33,19 @@ class App extends React.Component {
             instructions
         });
         this.updateRecipes(newRecipes);
+    }
+
+    handleRecipeEdited(name, ingredients, instructions) {
+        const {recipes, selectedRecipe} = this.state;
+        const editedRecipe = Object.assign({}, selectedRecipe, {
+            name,
+            ingredients,
+            instructions
+        });
+
+        const newRecipes = recipes.map(recipe => recipe === selectedRecipe ? editedRecipe : recipe);
+        this.updateRecipes(newRecipes);
+        this.handleSelectRecipe(editedRecipe);
     }
 
     handleSelectRecipe(recipe) {
@@ -54,6 +67,12 @@ class App extends React.Component {
         this.setState({
             search
         });
+    }
+
+    handleEditRecipe() {
+        this.setState({
+            showCreate : true
+        })
     }
 
     updateRecipes(newRecipes) {
@@ -91,8 +110,13 @@ class App extends React.Component {
                 <div className='col-xs-8'>
                     {
                     showCreate ? 
-                    <CreateForm onSubmit={this.handleCreateRecipe.bind(this)} /> : 
-                    <RecipeDetail recipe={selectedRecipe} onDelete={this.handleDeleteRecipe.bind(this)} />
+                    <CreateEditForm 
+                      onCreate={this.handleRecipeCreated.bind(this)} 
+                      onEdit={this.handleRecipeEdited.bind(this)} 
+                      recipe={selectedRecipe} /> : 
+                    <RecipeDetail recipe={selectedRecipe} 
+                      onDelete={this.handleDeleteRecipe.bind(this)} 
+                      onEdit={this.handleEditRecipe.bind(this)}/>
                     }
 
                 </div>
