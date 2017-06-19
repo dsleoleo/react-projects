@@ -3,15 +3,21 @@ import React from 'react';
 import RecipeDetail from './RecipeDetail';
 import RecipeList from './RecipeList';
 import CreateForm from './CreateForm';
+import SearchBox from './SearchBox';
+
+const LOCAL_STORAGE_KEY = 'recipes';
 
 class App extends React.Component {
     constructor() {
         super();
 
+        const localStorageRecipes = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+
         this.state = {
             showCreate: false,
-            recipes: [],
-            selectedRecipe: null
+            recipes: localStorageRecipes ? JSON.parse(localStorageRecipes) : [],
+            selectedRecipe: null,
+            search: ''
         };
     }
 
@@ -26,9 +32,7 @@ class App extends React.Component {
             ingredients,
             instructions
         });
-        this.setState({
-            recipes : newRecipes
-        });
+        this.updateRecipes(newRecipes);
     }
 
     handleSelectRecipe(recipe) {
@@ -38,7 +42,35 @@ class App extends React.Component {
         })
     }
 
+    handleDeleteRecipe(recipeToDelete) {
+        const newRecipes = this.state.recipes.filter(recipe=> recipe !== recipeToDelete);
+        this.updateRecipes(newRecipes);
+        this.setState({
+            selectedRecipe : null
+        });
+    }
+
+    handleSearchChange(search) {
+        this.setState({
+            search
+        });
+    }
+
+    updateRecipes(newRecipes) {
+        this.setState({
+            recipes: newRecipes
+        });
+
+        window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newRecipes));
+    }
+
     render() {
+        const { recipes, selectedRecipe, showCreate, search} = this.state;
+
+        const filteredRecipes = recipes.filter(recipe=>
+            recipe.name.toLowerCase().indexOf(search.toLowerCase()) > -1)
+            .sort((a, b) => a.name > b.name);
+        
         return(
         <div className = 'container'>
             <h1>Recipe Database</h1>
@@ -50,15 +82,17 @@ class App extends React.Component {
                     >
                         Create new recipe 
                     </button>
+                    <SearchBox onChange={this.handleSearchChange.bind(this)} />
                     <RecipeList 
-                        recipes={this.state.recipes}
+                        recipes={filteredRecipes}
                         onSelectRecipe={this.handleSelectRecipe.bind(this)}
                     />
                 </div>
                 <div className='col-xs-8'>
-                    {this.state.showCreate ? 
+                    {
+                    showCreate ? 
                     <CreateForm onSubmit={this.handleCreateRecipe.bind(this)} /> : 
-                    <RecipeDetail recipe={this.state.selectedRecipe}/>
+                    <RecipeDetail recipe={selectedRecipe} onDelete={this.handleDeleteRecipe.bind(this)} />
                     }
 
                 </div>
