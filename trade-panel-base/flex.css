@@ -1,0 +1,10 @@
+.flex-container {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+   justify-content: flex-start;
+}
+.flex-item {
+  background-color: #2a5daf;
+  padding: 3em;
+  margin: 0.5em;
+}
