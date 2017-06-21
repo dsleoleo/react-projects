@@ -1,0 +1,30 @@
+@import "./variables.scss";
+
+.exchange-container {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: stretch;
+}
+
+.price-panel-container {
+  display: flex;
+  flex-direction: column;  
+  flex: 1;
+  min-width: 380px;
+}
+
+.extension-panel-container {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+}
+
+.extension-table-item-left{
+   flex-grow: 1;
+   text-align: left;
+}
+.extension-table-item-right{
+   flex-grow: 1;
+   text-align: right;
+}

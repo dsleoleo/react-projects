@@ -178,3 +178,11 @@ $price-width: calc(50% - #{$price-movement-width} / 2);
 .expanded-table {
   background-color: rgba(100, 119, 141, 0.89);
 }
+
+.center-down-arrow {
+  position: absolute;
+  bottom: 0;  
+  width: 100%;
+  text-align: center;
+  font-size:1.5em;
+}
