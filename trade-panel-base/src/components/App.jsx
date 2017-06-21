@@ -14,6 +14,7 @@ class App extends React.Component {
             <PricePanel symbol="ETC / USD" bigFigure={0} interval={4500}/>
             <PricePanel symbol="DASH / USD" bigFigure={1} interval={3000}/>
             <PricePanel symbol="ZEC / USD" bigFigure={3} interval={2400}/>
+            <PricePanel symbol="BTC / EUR" bigFigure={26} interval={2000}/>
         </div>);        
     }
 }

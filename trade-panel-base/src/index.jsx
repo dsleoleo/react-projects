@@ -9,4 +9,7 @@ import "./css/priceMovement.scss";
 import "./css/spotTile.scss";
 import "./css/tradeNotification.scss";
 
+require('file-loader?name=[name].[ext]!../index.html');
+require('file-loader?name=[name].[ext]!../app.yaml');
+
 ReactDOM.render(<App />, document.getElementById('root'));
