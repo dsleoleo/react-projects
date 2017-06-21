@@ -6,9 +6,9 @@ export default class PricePanel extends React.Component {
         super(...args);
         this.state = {
             open: false,
-            bidRate: { bigFigure: 0, pip: 0, decimal: 0, scale: 100},
-            askRate: { bigFigure: 0, pip: 0, decimal: 0, scale: 100},
-            symbol: ''
+            bidRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100},
+            askRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100},
+            symbol: this.props.symbol
         };
     }
     
@@ -25,14 +25,19 @@ export default class PricePanel extends React.Component {
         return (this.getRawPrice(ask) - this.getRawPrice(bid)).toFixed(2);
     }
     componentDidMount() {
-        this.setPrice();
+        this.timer = setInterval(this.setPrice.bind(this), this.props.interval);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
     }
     
+    
     setPrice() {
-        const bid = this.generateRate(200);
-        var ask = this.generateRate(200);
+        const bid = this.generateRate(this.props.bigFigure);
+        var ask = this.generateRate(this.props.bigFigure);
         while(this.getRawPrice(ask) < this.getRawPrice(bid)) {
-            ask = this.generateRate(200);
+            ask = this.generateRate(this.props.bigFigure);
         }
         this.setState({
             bidRate : bid,
@@ -50,7 +55,7 @@ export default class PricePanel extends React.Component {
                             <i className="popout__undock spot-tile__icon--undock glyphicon glyphicon-log-out"></i>
                         </div>
                         <div><span className="spot-tile__execution-label">Executing</span>
-                            <div className=""><span className="spot-tile__symbol">XBT / USD</span>
+                            <div className=""><span className="spot-tile__symbol">{this.props.symbol}</span>
                                 <div className="price-button spot-tile__price spot-tile__price--bid">
                                     <span className="price-button__wrapper">
                                         <span className="price-button__big-figure">
@@ -157,3 +162,8 @@ export default class PricePanel extends React.Component {
     }
 }
 
+PricePanel.propTypes = {
+    interval: React.PropTypes.object.isRequired,
+    bigFigure: React.PropTypes.object.isRequired,    
+    symbol: React.PropTypes.object.isRequired,
+}
