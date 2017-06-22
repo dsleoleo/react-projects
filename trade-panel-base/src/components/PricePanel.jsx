@@ -156,10 +156,10 @@ export default class PricePanel extends React.Component {
 
                 </div>
 
-                <Panel collapsible expanded={this.state.open} style={{ backgroundColor : '#2979bc', border: 'none'}}>
+                <Panel collapsible expanded={this.state.open} style={{ backgroundColor : '#424545', color : 'white', border: 'none'}}>
                     <div className="extension-panel-container">
                     <div className="extension-table-item-left">    
-                    <table className="table table-hover table-condensed bg-primary">
+                    <table className="table table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th>Size</th>
@@ -173,7 +173,7 @@ export default class PricePanel extends React.Component {
                     </table>
                     </div>
                     <div className="extension-table-item-right">    
-                    <table className="table table-hover table-condensed bg-primary">
+                    <table className="table table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th style={{textAlign: 'right'}}>Size</th>
