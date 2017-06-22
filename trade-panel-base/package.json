@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "deploy": "gsutil rsync -d dist gs://cosmic-surface-138118.appspot.com",
-    "start": "webpack --config config/webpack.config.js"
+    "start": "webpack --watch --config config/webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1"
   },

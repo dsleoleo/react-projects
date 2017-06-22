@@ -91,12 +91,14 @@ $price-width: calc(50% - #{$price-movement-width} / 2);
   top: 35px;
 }
 
-.spot-tile__price--bid {
+.spot-tile__price--bid {  
+  transition: background-color 500ms ease-in-out;
   left: -10px;
   margin-left: 1px;
 }
 
-.spot-tile__price--ask {
+.spot-tile__price--ask {  
+  transition: background-color 500ms ease-in-out;
   right: -10px;
   margin-right: 1px;
 }
@@ -185,4 +187,33 @@ $price-width: calc(50% - #{$price-movement-width} / 2);
   width: 100%;
   text-align: center;
   font-size:1.5em;
+}
+
+.pricemove-enter {
+  background-color: 0
+}
+
+.pricemove-enter.pricemove-enter-active {
+  background-color: #81d31c;
+  transition: background-color 500ms ease-in;
+}
+.pricemove-leave {
+  background-color: 0
+}
+
+.pricemove-leave.pricemove-leave-active {
+  background-color: #d90a0a;
+  transition: background-color 300ms ease-in;
+}
+
+@keyframes price-up {
+    0%   {background-color: 0;}    
+    50%  {background-color: green;}
+    100% {background-color: 0;}
+}
+
+@keyframes price-down {
+    0%   {background-color: 0;}    
+    50%  {background-color: red;}
+    100% {background-color: 0;}
 }

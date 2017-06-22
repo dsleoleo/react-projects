@@ -1,14 +1,19 @@
 import React from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
+import PropTypes from 'prop-types';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class PricePanel extends React.Component {
     constructor(...args) {
         super(...args);
         this.state = {
             open: false,
-            bidRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100},
-            askRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100},
-            symbol: this.props.symbol
+            bidRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100, isUp: false},
+            askRate: { bigFigure: this.props.bigFigure, pip: 0, decimal: 0, scale: 100, isUp: false},
+            symbol: this.props.symbol, 
+            isSpreadDown: true,
+            bids: [],
+            asks: []
         };
     }
     
@@ -16,7 +21,7 @@ export default class PricePanel extends React.Component {
         return Math.floor((Math.random() * baseNumber) + 1) - 1;
     }
     generateRate(bigFigure) {
-        return { bigFigure, pip: this.getRandom(100), decimal: this.getRandom(100), scale: 100};
+        return { bigFigure, pip: this.getRandom(100), decimal: this.getRandom(100), scale: 100, isUp: false};
     }
     getRawPrice(rate) {
         return rate.bigFigure * rate.scale + rate.pip + rate.decimal / 100;
@@ -34,18 +39,29 @@ export default class PricePanel extends React.Component {
     
     
     setPrice() {
+       const {bidRate: previousBid, askRate: previousAsk} = this.state;        
         const bid = this.generateRate(this.props.bigFigure);
         var ask = this.generateRate(this.props.bigFigure);
         while(this.getRawPrice(ask) < this.getRawPrice(bid)) {
             ask = this.generateRate(this.props.bigFigure);
         }
+        bid.isUp = this.getRawPrice(bid) > this.getRawPrice(previousBid)
+        ask.isUp = this.getRawPrice(ask) < this.getRawPrice(previousAsk)
+        const isSpreadDown = this.getSpread(bid, ask) < this.getSpread(previousBid, previousAsk)
+
         this.setState({
             bidRate : bid,
-            askRate : ask
+            askRate : ask,
+            isSpreadDown : isSpreadDown,
+            bids: [{size: 888, price: 1234, exchange: "Coinbase"}, {size: 888, price: 1234, exchange: "Coinbase"}, {size: 888, price: 1234, exchange: "Coinbase"}, {size: 888, price: 1234, exchange: "Coinbase"}],
+            asks: [{size: 888, price: 1234, exchange: "Coinbase"}, {size: 888, price: 1234, exchange: "Coinbase"}, {size: 888, price: 1234, exchange: "Coinbase"}]
         });
     }
 
     render() {
+        const upAnimation = { animationName: 'price-up', animationDuration: '1s'};
+        const downAnimation = { animationName: 'price-down', animationDuration: '1s'};
+
         return (
             <div className="price-panel-container">
                 <div className="spot-tile spot-tile--readonly">
@@ -56,22 +72,27 @@ export default class PricePanel extends React.Component {
                         </div>
                         <div><span className="spot-tile__execution-label">Executing</span>
                             <div className=""><span className="spot-tile__symbol">{this.props.symbol}</span>
-                                <div className="price-button spot-tile__price spot-tile__price--bid">
+                                <div className="price-button spot-tile__price spot-tile__price--bid" style={this.state.bidRate.isUp ? upAnimation : downAnimation}>
+                                
                                     <span className="price-button__wrapper">
                                         <span className="price-button__big-figure">
                                             <span className="price-button__direction">Sell</span>
                                             <br />{this.state.bidRate.bigFigure}
                                         </span>
                                         <span className="price-button__pip">{this.state.bidRate.pip}</span><span className="price-button__tenth">.{this.state.bidRate.decimal}</span></span>
+                                
                                 </div>
                                 <div className="spot-tile__price-movement">
                                     <div>
-                                        <div className="price-movement"><i className="price-movement__icon--up fa fa-lg price-movement__icon--inactive"></i>
-                                            <span className="price-movement__value">{this.getSpread(this.state.bidRate, this.state.askRate)}</span><i className="price-movement__icon--down fa fa-lg fa-caret-down"></i>
+                                        <div className="price-movement">
+                                            <i className={this.state.isSpreadDown ? "price-movement__icon--up glyphicon glyphicon-chevron-up" : "price-movement__icon--down glyphicon glyphicon-chevron-down"}                                               
+                                            ></i>
+                                            <span className="price-movement__value">{this.getSpread(this.state.bidRate, this.state.askRate)}</span>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                <div className="price-button spot-tile__price spot-tile__price--ask">
+                                <div className="price-button spot-tile__price spot-tile__price--ask" style={this.state.askRate.isUp ? upAnimation : downAnimation}>
                                     <span className="price-button__wrapper">
                                         <span className="price-button__big-figure">
                                             <span className="price-button__direction">Buy</span>
@@ -88,7 +109,7 @@ export default class PricePanel extends React.Component {
                             </div>
 
                             <div className="center-down-arrow">
-                                <i className="glyphicon glyphicon-triangle-bottom" onClick={() => this.setState({ open: !this.state.open })}></i>
+                                <i className={ this.state.open ? "glyphicon glyphicon-triangle-top" : "glyphicon glyphicon-triangle-bottom" } onClick={() => this.setState({ open: !this.state.open })}></i>
                             </div>
                         </div>
 
@@ -107,22 +128,8 @@ export default class PricePanel extends React.Component {
                                 <th>Exchange</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
+                        <tbody>                            
+                            { this.state.bids.map(bid=><tr><td>{bid.size}</td><td>{bid.price}</td><td>{bid.exchange}</td></tr>)}                                                            
                         </tbody>
                     </table>
                     </div>
@@ -136,21 +143,7 @@ export default class PricePanel extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
-                            <tr>
-                                <td>100</td>
-                                <td>2624.78</td>
-                                <td>GDAX</td>
-                            </tr>
+                            { this.state.asks.map(bid=><tr><td>{bid.size}</td><td>{bid.price}</td><td>{bid.exchange}</td></tr>)}                                                            
                         </tbody>
                     </table>
                     </div>
@@ -163,7 +156,7 @@ export default class PricePanel extends React.Component {
 }
 
 PricePanel.propTypes = {
-    interval: React.PropTypes.object.isRequired,
-    bigFigure: React.PropTypes.object.isRequired,    
-    symbol: React.PropTypes.object.isRequired,
+    interval: PropTypes.number.isRequired,
+    bigFigure: PropTypes.number.isRequired,    
+    symbol: PropTypes.string.isRequired,
 }
