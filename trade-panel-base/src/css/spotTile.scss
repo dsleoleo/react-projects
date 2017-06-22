@@ -83,6 +83,17 @@ $price-width: calc(50% - #{$price-movement-width} / 2);
   top: 0;
   left: 0;
 }
+.spot-tile__coin_icon {    
+  color: white;
+  font-family: BrandonRegular;
+  font-weight: 700;
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
 
 .spot-tile__price {
   cursor: pointer;

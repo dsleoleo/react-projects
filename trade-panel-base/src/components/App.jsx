@@ -8,13 +8,14 @@ class App extends React.Component {
     render() {
         return (
         <div className="exchange-container">            
-            <PricePanel symbol="ETH / USD" bigFigure={3} interval={1600}/>
-            <PricePanel symbol="BTC / USD" bigFigure={26} interval={2000}/>
-            <PricePanel symbol="LTC / USD" bigFigure={0} interval={3500}/>
-            <PricePanel symbol="ETC / USD" bigFigure={0} interval={4500}/>
-            <PricePanel symbol="DASH / USD" bigFigure={1} interval={3000}/>
-            <PricePanel symbol="ZEC / USD" bigFigure={3} interval={2400}/>
-            <PricePanel symbol="BTC / EUR" bigFigure={26} interval={2000}/>
+            <PricePanel base="XMR" term="USD" bigFigure={3} interval={2500}/>
+            <PricePanel base="BTC" term="USD" bigFigure={26} interval={3000}/>
+            <PricePanel base="LTC" term="USD" bigFigure={0} interval={5500}/>
+            <PricePanel base="ETC" term="USD" bigFigure={0} interval={6500}/>
+            <PricePanel base="DASH" term="USD" bigFigure={1} interval={7000}/>
+            <PricePanel base="ZEC" term="USD" bigFigure={3} interval={8400}/>
+            <PricePanel base="BTC" term="EUR" bigFigure={26} interval={9000}/>
+            <PricePanel base="BTC" term="JPY" bigFigure={89} interval={6000}/>
         </div>);        
     }
 }
