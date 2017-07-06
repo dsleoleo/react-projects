@@ -12,8 +12,10 @@ class App extends React.Component {
     render() {
         return (
             <div style={{display: "flex"}}>                                
-                <Strategy id="first"></Strategy>                
-                <Strategy id="second"></Strategy>
+                <Strategy id="first" width={20} height={300} numOfSlaves={1} numOfJobs={20} batching={false}></Strategy>                
+                <Strategy id="first" width={20} height={300} numOfSlaves={3} numOfJobs={20} batching={false}></Strategy>                
+                <Strategy id="second" width={20} height={300} numOfSlaves={4} numOfJobs={20} batching={false}></Strategy>
+                <Strategy id="second" width={20} height={300} numOfSlaves={3} numOfJobs={20} batching={true}></Strategy>
             </div>
         )
     }
