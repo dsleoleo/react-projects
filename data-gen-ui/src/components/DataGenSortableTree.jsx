@@ -21,17 +21,26 @@ export default class Tree extends Component {
     if (this.props.fetchUrl) {
       fetch(this.props.fetchUrl)
         .then(result => result.json())
-        .then(treeData =>
-          this.setTreeData({ treeData })
+        .then(treeData => {
+          if (this.props.fetchUrl2)
+            fetch(this.props.fetchUrl2)
+              .then(result2 => result2.json())
+              .then(treeData2 => {                
+                this.setTreeData({treeData}, {treeData : treeData2})
+              }
+              )
+          else
+            this.setTreeData({ treeData })
+        }
         )
     }
-    else {
+    else {      
       this.setTreeData(this.props.treeData);
     }
   }
 
-  setTreeData(treeData) {
-    const newData = this.props.formatData ? this.props.formatData(treeData) : {treeData: treeData.treeData, filteredData: treeData.treeData};
+  setTreeData(treeData, subTreeData) {    
+    const newData = this.props.formatData ? this.props.formatData(treeData, subTreeData) : { treeData: treeData.treeData, filteredData: treeData.treeData };
     this.state.loading = false;
     this.setState({ treeData: newData.treeData, filteredData: newData.filteredData });
   }
@@ -46,7 +55,6 @@ export default class Tree extends Component {
   render() {
 
     return (
-
       <div style={{ height: 500 }}>
         <Input label={"Search"} placeholder="Node name or subnode name"
           value={this.state.searchString}
@@ -59,10 +67,11 @@ export default class Tree extends Component {
               onChange={treeData => {
                 if (this.props.exportDataFunc)
                   this.props.exportDataFunc(treeData);
-                this.setState({ filteredData: treeData })}
+                this.setState({ filteredData: treeData })
+              }
               }
               dndType={this.props.dndType}
-              
+              shouldCopyOnOutsideDrop={true}
             />
         }
       </div>
@@ -72,6 +81,7 @@ export default class Tree extends Component {
 
 Tree.propTypes = {
   fetchUrl: PropTypes.string,
+  fetchUrl2: PropTypes.string,
   treeData: PropTypes.object,
   formatData: PropTypes.func,
   dndType: PropTypes.string.isRequired,
