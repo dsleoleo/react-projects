@@ -1088,10 +1088,15 @@ html {
 }
 
 
-.all_container {
+.horizontal_box {
+  display: flex;  
+  flex-direction: row;
+  align-content: flex-start;
+}
 
-  display: flex;
-  
+.vertical_box {
+  display: flex;  
+  flex-direction: column;
 }
 
 .results {

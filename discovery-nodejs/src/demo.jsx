@@ -151,11 +151,11 @@ export default class Demo extends Component {
         !this.state.loading &&
         this.state.data &&
         this.state.data[0].results.length > 0 ? (
-          <div className="all_container">            
+          <div className="vertical_box">
+          <div className="horizontal_box">            
             {this.state.data.map(data => 
-              <div className="results">                
-            <div className="_container _container_large">
-            <div className="row">
+              
+              
                 <div className="results--panel-3">
                   <SentimentAnalysis
                     query={this.state.query}
@@ -163,42 +163,57 @@ export default class Demo extends Component {
                     sentiments={data.sentiments}
                   />
                 </div>
+              
+            )}            
+            </div>
+          <div className="horizontal_box">            
+            {this.state.data.map(data => 
+              <div className="results--panel-3">
+              <AnomalyDetection
+                query={this.state.query}
+                anomalyData={data.anomalyData}
+              />
               </div>
-              <div className="row">
-                <AnomalyDetection
-                  query={this.state.query}
-                  anomalyData={data.anomalyData}
-                />
-              </div>
-              <div className="row">
-                <div className="results--panel-4">
-                  <MentionsAndSentiments
-                    query={this.state.query}
-                    mentions={data.mentions}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="results--panel-1">
-                  <TopStories
-                    query={this.state.query}
-                    stories={data.results}
-                    onShowCode={this.toggleTopResults}
-                  />
-                </div>
+            )}
+            </div>
+
+          <div className="horizontal_box">            
+          {this.state.data.map(data => 
+            
+            <div className="results--panel-3">
+              <MentionsAndSentiments
+                query={this.state.query}
+                mentions={data.mentions}
+              />
+            </div>
+          
+          )}
+          </div>
+
+
+          <div className="horizontal_box">            
+          {this.state.data.map(data => 
+            
+            <div className="results--panel-3">
+              <TopStories
+                query={this.state.query}
+                stories={data.results}
+                onShowCode={this.toggleTopResults}
+              />
+            </div>  
+          )}
+          </div>
+              
+              
+              
                 {/* <div className="results--panel-2">
                   <TopEntities
                     query={this.state.query}
                     entities={data.entities}
                     onShowCode={this.toggleTopEntities}
                   />
-                </div> */}
-              </div>
-
-            </div>
-          </div>
-            )}                                        
-          </div>
+                </div> */}    
+                </div>                                        
         ) : (
           !this.state.loading && this.state.data && <NoResults query={this.state.query} />
         )}
