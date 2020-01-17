@@ -1090,13 +1090,37 @@ html {
 
 .horizontal_box {
   display: flex;  
-  flex-direction: row;
-  align-content: flex-start;
+  flex-direction: row;  
+  justify-content: center;
 }
 
 .vertical_box {
   display: flex;  
   flex-direction: column;
+  align-content: center;
+}
+
+.sentiment--container {
+  margin-top: 1rem;  
+  width:200px; 
+  max-width:200px;  
+}
+.anomi--container {
+  margin-top: 1rem;  
+  width:200px; 
+  max-width:200px;  
+}
+
+.mention--container {
+  margin-top: 1rem;  
+  width:200px; 
+  max-width:200px;  
+}
+
+.topstory--container {
+  margin-top: 1rem;  
+  width:200px; 
+  max-width:200px;  
 }
 
 .results {

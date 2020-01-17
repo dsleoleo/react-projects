@@ -9,12 +9,12 @@ function WidgetHeader({ title, description, onShowQuery }) {
           { title }
         </h2>
         <div className="widget--header-spacer" />
-        <button
+        {/* <button
           className="base--button widget--header-button"
           onClick={onShowQuery}
         >
           View Query
-        </button>
+        </button> */}
 
       </div>
       <p className="base--p">

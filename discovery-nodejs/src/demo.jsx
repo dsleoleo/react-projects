@@ -153,17 +153,14 @@ export default class Demo extends Component {
         this.state.data[0].results.length > 0 ? (
           <div className="vertical_box">
           <div className="horizontal_box">            
-            {this.state.data.map(data => 
-              
-              
+            {this.state.data.map(data =>                             
                 <div className="results--panel-3">
                   <SentimentAnalysis
                     query={this.state.query}
                     sentiment={data.sentiment}
                     sentiments={data.sentiments}
                   />
-                </div>
-              
+                </div>              
             )}            
             </div>
           <div className="horizontal_box">            
