@@ -1157,6 +1157,7 @@ html {
 }
 .results--panel-3 {
   margin-top: 1rem;
+  max-width: 500px;  
 }
 .results--panel-4 {
   margin-top: 1rem;
