@@ -1,21 +1,29 @@
 import React from 'react';
-import { Jumbotron, Footer } from 'watson-react-components';
+import { Header, Jumbotron, Footer } from 'watson-react-components';
 import Demo from './demo';
+import CSVReader from './CSVReader';
 import exabeamicon from './assets/exabeam.png'
-export default function Layout() {
+
+
+
+
+
+export default function Layout() {  
   return (
     <div>
-      <img src={exabeamicon} width="200" height="150" alt="Exabeam" />
-      {/* <Jumbotron
-        serviceName="Discovery"
-        repository="https://github.com/watson-developer-cloud/discovery-nodejs"
-        documentation="https://cloud.ibm.com/docs/services/discovery?topic=discovery-about"
-        apiReference="https://cloud.ibm.com/apidocs/discovery/discovery"
-        startInBluemix="https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Fdiscovery%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409"
-        version="GA"
-        description="Unlock hidden value in data to find answers, monitor trends and surface patterns, with the world’s most advanced cloud-native insight engine."
-      /> */}
-      <Demo />
+      <a href="http://localhost:3000">
+      <img src={exabeamicon} width="200" height="150" alt="Exabeam"/>              
+        </a>
+        <Header
+        mainBreadcrumbs="Exabeam Reviews"
+        mainBreadcrumbsUrl="/"
+        subBreadcrumbs="2020 Hackathon"
+        subBreadcrumbsUrl="/"
+        hasWordmark={false}
+      />
+      
+      <Demo />      
+      <CSVReader/>
       <div className="footer-container--div">
         <section className="_full-width-row footer-gdpr--section">
           <span>

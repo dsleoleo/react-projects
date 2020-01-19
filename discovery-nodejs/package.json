@@ -25,6 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^4.8.3",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.5",
     "cross-spawn": "^7.0.1",
@@ -38,6 +39,9 @@
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
+    "react-bubble-chart": "^0.4.0",
+    "react-csv-reader": "^2.0.2",
+    "react-csv-to-table": "0.0.4",
     "react-dom": "^16.11.0",
     "recharts": "^1.8.5",
     "watson-react-components": "^0.6.19"

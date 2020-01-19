@@ -1087,7 +1087,11 @@ html {
   padding-left: 1.25rem;
 }
 
-
+.table_main {
+  display: flex;
+  flex-direction: row;  
+  align-items: flex-start;
+}
 .horizontal_box {
   display: flex;  
   flex-direction: row;  
