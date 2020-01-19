@@ -8,6 +8,7 @@ import AnomalyDetection from './AnomalyDetection/index';
 import SentimentAnalysis from './SentimentAnalysis/index';
 import MentionsAndSentiments from './MentionsAndSentiments/index';
 import NoResults from './NoResults/index';
+import GoogleTrends from './GoogleTrends/index'
 
 const hasResults = entities =>
   entities.aggregations &&
@@ -172,6 +173,12 @@ export default class Demo extends Component {
               />
               </div>
             )}
+            </div>
+
+            <div className="horizontal_box_trends">      
+              <GoogleTrends
+                query={this.state.query}
+              />
             </div>
 
           <div className="horizontal_box">            
