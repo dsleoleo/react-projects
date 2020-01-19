@@ -17,6 +17,7 @@ const discovery = new DiscoveryV1({
 const express = require('express');
 const path = require('path');
 const queryBuilder = require('./src/query-builder');
+const googleTrends = require('google-trends-api');
 
 const app = express();
 require('./config/express')(app);
@@ -51,6 +52,17 @@ function getWidgetQuery(request) {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.get('/api/trends', (req, res) => {
+  const companies = Object.values(req.query)
+  googleTrends.interestOverTime({keyword:companies , startTime: new Date(Date.now() - (12 * 30 * 24 * 60 * 60 * 1000))})
+  .then(function(results){
+    res.send(results);
+  })
+  .catch(function(err){
+    console.error(err);
+  });
 });
 
 // setup query endpoint for news
