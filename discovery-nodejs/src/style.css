@@ -767,7 +767,7 @@ html {
 .query--query-description {
   color: #6ABA4F;
   font-size: 1.3em;
-  margin-bottom: 2rem;
+  margin-top: 7rem;
 }
 
 .query--query-list-item {
@@ -856,6 +856,7 @@ html {
 .query--search-container {
   position: relative;
   width: 100%;
+  margin-bottom: 5rem;
 }
 
 .query--icon-container {
@@ -1181,6 +1182,11 @@ html {
   .results--panel-3 {
     margin-top: 2rem;
   }
+}
+
+.exabeam-header {
+  padding-left: 20px;
+  padding-right: 30px;
 }
 
 .top-entities--cloud {
@@ -1876,7 +1882,7 @@ input:focus, button:focus, textarea:focus {
 
 .buttons-group--button:hover, input[type="radio"]:checked+label.buttons-group--button {
   background-color: #fff;
-  color: #9855d4;
+  color: #6ABA4F;
   border-color: #fff;
 }
 

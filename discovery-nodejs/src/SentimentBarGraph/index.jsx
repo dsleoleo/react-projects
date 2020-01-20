@@ -1,81 +1,89 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import { string, number, shape, arrayOf } from 'prop-types';
 import {
     ResponsiveContainer,
-    LineChart,
-    Line,
     XAxis,
     YAxis,
     CartesianGrid,
     Tooltip,
     ComposedChart,
     BarChart,
+    Bar,
+    Legend,
 } from 'recharts';
+import {_dataString_} from '../sentimentstudydata.js';
 
 export default class SentimentBarGraph extends Component {
-
-    static csvToSentimentData(csv) {
-        var data = {};
-        const header = csv[0];
-        const data = csv.shift();
-
-        data[questions] = data.map(row => row[0]);
-        const negativeIndex = header.find(val => val === "negative");
-        data[negative] = data.map(row => row[negativeIndex]);
-        const posIndex = header.find(val => val === "positive");
-        data[positice] = data.map(row => row[posIndex]);
-
-        return data;
+    state = {
+        data: null,
+        hasLoaded: false,
     }
 
-    static propTypes = {
-        sentimentData: arrayOf(
-            shape({
-                questions: string.isRequired,
-                negative: number.isRequired,
-                positive: number.isRequired,
-            })
-        ).isRequired
-    };
+    csvToSentimentData = () => {
+        var rows = _dataString_.split("\n");
+        const csv = rows.map(row => row.split(","));
+        var res = {};
+        const header = csv[0];
+        csv.shift();
+
+        res["questions"] = csv.map(row => row[0]);
+        res["negative"] = csv.map(row => parseFloat(row[1]));
+        res["positive"] = csv.map(row => parseFloat(row[3]));
+
+        var final = [];
+        var i;
+        for (i = 0; i < 6; i++) {
+            var curObj = {};
+            curObj["questions"] = res["questions"][i];
+            curObj["negative"] = res["negative"][i];
+            curObj["positive"] = res["positive"][i];
+
+            final.push(curObj)
+        }
+
+        return final;
+    }
 
     static defaultProps = {
         colorLine: '#6ABA4F',
     };
 
     render() {
-        const { sentimentData } = this.props;
         return (
-            <ResponsiveContainer height={250}>
-                <BarChart
-                    data={sentimentData}
-                    margin={{
-                        ...ComposedChart.defaultProps.margin,
-                        top: 15,
-                        right: 15,
-                    }}
-                >
-                    <Bar
-                        dataKey="positive"
-                        name="Positive sentiment"
-                        fill="#6ABA4F'"
-                    />
+            <div>
+                {!this.state.hasLoaded ? (
+                    this.setState({ data: this.csvToSentimentData(), hasLoaded: true })) :
+                    <ResponsiveContainer height={250}>
+                        <BarChart
+                            data={this.state.data}
+                            barSize="2"
+                            margin={{
+                                ...ComposedChart.defaultProps.margin,
+                                top: 15,
+                                right: 15,
+                            }}
+                        >
+                            <Bar
+                                dataKey="positive"
+                                name="Positive sentiment"
+                                fill="#6ABA4F"
+                            />
 
-                    <Bar
-                        dataKey="negative"
-                        name="Negative sentiment"
-                        fill="#fc0303'"
-                    />
-                    <CartesianGrid stroke="#ccc" />
-                    <XAxis
-                        dataKey="questions"
-                    />
-                    <YAxis domain={['auto', 'auto']} />
-                    <Tooltip />
-                    <Legend />
-                    />
+                            <Bar
+                                dataKey="negative"
+                                name="Negative sentiment"
+                                fill="#fc0303"
+                            />
+                            <CartesianGrid stroke="#ccc" />
+                            <XAxis
+                                dataKey="questions"
+                            />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            />
                 </BarChart>
-            </ResponsiveContainer>
+                    </ResponsiveContainer>}
+            </div>
         );
     }
 }

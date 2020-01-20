@@ -3,6 +3,7 @@ import { Header, Jumbotron, Footer } from 'watson-react-components';
 import Demo from './demo';
 import CSVReader from './CSVReader';
 import exabeamicon from './assets/exabeam.png'
+import SentimentBarGraph from './SentimentBarGraph';
 
 
 
@@ -12,7 +13,7 @@ export default function Layout() {
   return (
     <div>
       <a href="http://localhost:3000">
-      <img src={exabeamicon} width="200" height="150" alt="Exabeam"/>              
+      <img src={exabeamicon} className="exabeam-header" width="250" height="187" alt="Exabeam"/>              
         </a>
         <Header
         mainBreadcrumbs="Exabeam Reviews"
@@ -21,7 +22,7 @@ export default function Layout() {
         subBreadcrumbsUrl="/"
         hasWordmark={false}
       />
-      
+      <SentimentBarGraph />
       <Demo />      
       <CSVReader/>
       <div className="footer-container--div">

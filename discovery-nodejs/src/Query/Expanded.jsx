@@ -60,8 +60,7 @@ export default class QueryExpanded extends Component {
           </div>
           <div className="query--right">
             <p className="base--p query--query-description">
-              Quickly find insights in the Watson Discovery News data collection
-              of recent news articles. Easily explore a company&apos;s:
+              Compare companies head to head in a variety of metrics. Enter comma-separated company names in the search bar to get started.
             </p>
             {/* <ul className="base--ul query--query-list">
               <li className="base--li query--query-list-item">Top stories over the last two months</li>
