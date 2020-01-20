@@ -10,7 +10,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 const useStyles = makeStyles({
   root: {
     width: 500,
-    backgroundColor : 'transparent'
+    backgroundColor: 'transparent'
   },
 });
 
@@ -30,11 +30,13 @@ export default function Layout() {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="Exabeam Reviews" />    
+        <BottomNavigationAction label="Exabeam Reviews" />
         <BottomNavigationAction label="Company Searches" />
       </BottomNavigation>
 
-      {value == 0 ? (<Review/>) : (
+      {value == 0 ? (
+        <Review />
+      ) : (
           <Demo />
         )}
 

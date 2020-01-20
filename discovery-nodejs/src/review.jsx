@@ -81,9 +81,10 @@ export default class Review extends Component {
 
         return (
             <div>
+                <img src={exabeamicon} width="300" height="300" alt="Exabeam" style={{opacity: 0.7}}/>
                 {/* <CSVReader></CSVReader> */}
                 {this.state.hide ? (
-                    <div className="fill-block-large">
+                    <div className="fill-block-large">                        
                         <section className="_full-width-row query query_collapsed">
                             <div className="_container _container_large">
                                 <div className="query--flex-container">
@@ -107,7 +108,7 @@ export default class Review extends Component {
                                             buttons={this.state.dateButtons}
                                         />
                                     </div>
-                                    <img src={exabeamicon} width="250" height="300" alt="Exabeam" />
+                                    
                                 </div>
                             </div>
                         </section>
