@@ -3,6 +3,7 @@ import { Header, Jumbotron, Footer } from 'watson-react-components';
 import Demo from './demo';
 import CSVReader from './CSVReader';
 import exabeamicon from './assets/exabeam.png'
+import SentimentBarGraph from './SentimentBarGraph';
 
 
 
@@ -21,7 +22,7 @@ export default function Layout() {
         subBreadcrumbsUrl="/"
         hasWordmark={false}
       />
-      
+      <SentimentBarGraph />
       <Demo />      
       <CSVReader/>
       <div className="footer-container--div">
