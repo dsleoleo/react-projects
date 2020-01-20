@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import moment from 'moment';
+import exabeamicon from '../assets/exabeam.png';
 
 import { TextInput, Icon } from 'watson-react-components';
 
@@ -57,24 +58,11 @@ export default class QueryExpanded extends Component {
                 <Icon type="search" size="regular" fill="#ffffff" />
               </button>
             </div>
-          </div>
-          <div className="query--right">
-            <p className="base--p query--query-description">
-              Compare companies head to head in a variety of metrics. Enter comma-separated company names in the search bar to get started.
-            </p>
-            {/* <ul className="base--ul query--query-list">
-              <li className="base--li query--query-list-item">Top stories over the last two months</li>
-              <li className="base--li query--query-list-item">Top entities (people, topics, companies) mentioned in those articles</li>
-              <li className="base--li query--query-list-item">Trend of public sentiment in news</li>
-              <li className="base--li query--query-list-item">Anomalous periods of high press coverage</li>
-              <li className="base--li query--query-list-item">Trend of most commonly paired entities (co-mentions)</li>
-            </ul>
-            <p className="base--p query--query-description">
-              Watson Discovery also lets you do the same analysis with your own data. Learn more
-              {' '}
-              <a href="https://ibm.biz/WatsonDiscovery">here</a>
-.
-            </p> */}
+          </div>          
+          <div>
+            {/* <a href="http://localhost:3000"> */}
+              <img src={exabeamicon} width="400" height="300" alt="Exabeam" />
+            {/* </a> */}
           </div>
         </div>
       </section>
