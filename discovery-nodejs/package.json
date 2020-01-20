@@ -44,6 +44,7 @@
     "react-csv-reader": "^2.0.2",
     "react-csv-to-table": "0.0.4",
     "react-dom": "^16.11.0",
+    "react-wordcloud": "^1.1.1",
     "recharts": "^1.8.5",
     "watson-react-components": "^0.6.19"
   },
