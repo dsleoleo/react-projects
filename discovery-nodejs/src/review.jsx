@@ -16,6 +16,8 @@ import positive from './assets/positive';
 import ReactWordCloud from 'react-wordcloud';
 import CSVReader from './CSVReader';
 import SentimentBarGraph from './SentimentBarGraph';
+import RatingChart from './RatingChart';
+import ResponseChart from './ResponseChart';
 
 export default class Review extends Component {
     classes = makeStyles({
@@ -81,10 +83,10 @@ export default class Review extends Component {
 
         return (
             <div>
-                <img src={exabeamicon} width="300" height="300" alt="Exabeam" style={{opacity: 0.7}}/>
+                <img src={exabeamicon} width="300" height="300" alt="Exabeam" style={{ opacity: 0.7 }} />
                 {/* <CSVReader></CSVReader> */}
                 {this.state.hide ? (
-                    <div className="fill-block-large">                        
+                    <div className="fill-block-large">
                         <section className="_full-width-row query query_collapsed">
                             <div className="_container _container_large">
                                 <div className="query--flex-container">
@@ -108,7 +110,7 @@ export default class Review extends Component {
                                             buttons={this.state.dateButtons}
                                         />
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </section>
@@ -116,7 +118,13 @@ export default class Review extends Component {
 
                 ) : (
                         <div className="table_main">
-                            <SentimentBarGraph />
+                            <br />
+                            <br />
+                            <div className="chart-box">
+                                <ResponseChart />
+                                <RatingChart />
+                                <SentimentBarGraph />
+                            </div>
                             <TableContainer component={Paper}>
                                 <Table className={this.classes.table} aria-label="simple table">
                                     <TableHead>
@@ -138,49 +146,49 @@ export default class Review extends Component {
                                 </Table>
 
                             </TableContainer>
+                            <div className="chart-box">
+                                <div style={{ height: 300, width: 800 }}>
+                                    <ReactWordCloud words={positive}
 
-                            <div style={{ height: 400, width: 1000 }}>
-                                <ReactWordCloud words={positive}
+                                        options={{
+                                            colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+                                            enableTooltip: true,
+                                            deterministic: false,
+                                            fontFamily: 'impact',
+                                            fontSizes: [20, 80],
+                                            fontStyle: 'normal',
+                                            fontWeight: 'normal',
+                                            padding: 1,
+                                            rotations: 3,
+                                            rotationAngles: [0, 90],
+                                            scale: 'sqrt',
+                                            spiral: 'archimedean',
+                                            transitionDuration: 3000,
+                                        }}
+                                    />
+                                </div>
 
-                                    options={{
-                                        colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
-                                        enableTooltip: true,
-                                        deterministic: false,
-                                        fontFamily: 'impact',
-                                        fontSizes: [20, 80],
-                                        fontStyle: 'normal',
-                                        fontWeight: 'normal',
-                                        padding: 1,
-                                        rotations: 3,
-                                        rotationAngles: [0, 90],
-                                        scale: 'sqrt',
-                                        spiral: 'archimedean',
-                                        transitionDuration: 3000,
-                                    }}
-                                />
+                                <div style={{ height: 300, width: 800 }}>
+                                    <ReactWordCloud words={negative}
+
+                                        options={{
+                                            colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+                                            enableTooltip: true,
+                                            deterministic: false,
+                                            fontFamily: 'impact',
+                                            fontSizes: [20, 80],
+                                            fontStyle: 'normal',
+                                            fontWeight: 'normal',
+                                            padding: 1,
+                                            rotations: 3,
+                                            rotationAngles: [0, 90],
+                                            scale: 'sqrt',
+                                            spiral: 'archimedean',
+                                            transitionDuration: 3000,
+                                        }}
+                                    />
+                                </div>
                             </div>
-
-                            <div style={{ height: 400, width: 1000 }}>
-                                <ReactWordCloud words={negative}
-
-                                    options={{
-                                        colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
-                                        enableTooltip: true,
-                                        deterministic: false,
-                                        fontFamily: 'impact',
-                                        fontSizes: [20, 80],
-                                        fontStyle: 'normal',
-                                        fontWeight: 'normal',
-                                        padding: 1,
-                                        rotations: 3,
-                                        rotationAngles: [0, 90],
-                                        scale: 'sqrt',
-                                        spiral: 'archimedean',
-                                        transitionDuration: 3000,
-                                    }}
-                                />
-                            </div>
-
                         </div>
                     )
                 }

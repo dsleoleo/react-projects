@@ -729,6 +729,10 @@ html {
   background: linear-gradient(90deg, rgba(106,186,79,1) 0%, rgb(106,186,79,1) 35%, #f6f8f9 100%);
 }
 
+.chart-box {
+  display: flex;
+}
+
 .query--no-results-wrapper {
   width: 100%;
   text-align: center;
@@ -779,7 +783,7 @@ html {
 }
 
 .query--query-description {
-  color: rgb(172, 83, 23);
+  color: #6ABA4F;
   font-size: 1.3em;
   margin-bottom: 2rem;
 }
