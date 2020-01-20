@@ -39,7 +39,7 @@ export default class SentimentBarGraph extends Component {
 
             final.push(curObj)
         }
-
+        // console.log(final);
         return final;
     }
 
