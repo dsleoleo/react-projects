@@ -724,7 +724,8 @@ html {
 }
 
 .fill-block-large {
-  height: 620px;
+  
+  height: 620px;  
   background: linear-gradient(90deg, rgba(106,186,79,1) 0%, rgb(106,186,79,1) 35%, #f6f8f9 100%);
 }
 
