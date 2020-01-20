@@ -1184,6 +1184,11 @@ html {
   }
 }
 
+.exabeam-header {
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
 .top-entities--cloud {
   display: block;
 /*  transform: scale(.9, .9);
@@ -1877,7 +1882,7 @@ input:focus, button:focus, textarea:focus {
 
 .buttons-group--button:hover, input[type="radio"]:checked+label.buttons-group--button {
   background-color: #fff;
-  color: #9855d4;
+  color: #6ABA4F;
   border-color: #fff;
 }
 

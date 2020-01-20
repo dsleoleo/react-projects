@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <div>
       <a href="http://localhost:3000">
-      <img src={exabeamicon} width="200" height="150" alt="Exabeam"/>              
+      <img src={exabeamicon} className="exabeam-header" width="250" height="187" alt="Exabeam"/>              
         </a>
         <Header
         mainBreadcrumbs="Exabeam Reviews"
