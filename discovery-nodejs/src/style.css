@@ -1089,7 +1089,7 @@ html {
 
 .table_main {
   display: flex;
-  flex-direction: row;  
+  flex-direction: column;  
   align-items: flex-start;
 }
 .horizontal_box {
