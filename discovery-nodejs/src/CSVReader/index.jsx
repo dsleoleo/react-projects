@@ -13,10 +13,6 @@ import positive from '../assets/positive';
 import ReactWordCloud from 'react-wordcloud';
 
 
-
-
-
-
 export default class CSVProcessor extends Component {
 
     classes = makeStyles({
@@ -26,7 +22,7 @@ export default class CSVProcessor extends Component {
     });
 
 
-
+    
     createData(name, calories, fat, carbs, protein) {
         return { name, calories, fat, carbs, protein };
     }
