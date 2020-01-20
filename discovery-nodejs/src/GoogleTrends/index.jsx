@@ -9,6 +9,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Legend,
   ComposedChart,
 } from 'recharts';
 import WidgetHeader from '../WidgetHeader/index';
@@ -87,7 +88,7 @@ export default class GoogleTrends extends Component {
 
   render() {
     const { query } = this.props;
-
+    const colorArray = ["#e2237e", "#00b4a0", "#000000"]
     return (
       <div>
         {!this.state.hasLoaded ? (
@@ -117,11 +118,12 @@ export default class GoogleTrends extends Component {
                       type="linear"
                       dataKey={"company_" + id}
                       name={"Search Interest for " + query.text.split(",")[id]}
-                      stroke={"#" + (parseInt("6ABA4F", 16) + (id * -400)).toString(16)}
+                      stroke={colorArray[(id % 3)]}//{"#" + (parseInt("6ABA4F", 16) + (id * -400)).toString(16)}
                       strokeWidth="3"
                     />)
                   })
                 }
+                <Legend />
                 <CartesianGrid stroke="#ccc" />
                 <XAxis
                   dataKey="formatted_time"
