@@ -116,7 +116,7 @@ export default class Review extends Component {
 
                 ) : (
                         <div className="table_main">
-                            {/* <SentimentBarGraph /> */}
+                            <SentimentBarGraph />
                             <TableContainer component={Paper}>
                                 <Table className={this.classes.table} aria-label="simple table">
                                     <TableHead>
