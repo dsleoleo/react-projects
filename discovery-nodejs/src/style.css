@@ -708,6 +708,11 @@ html {
   margin-top: 0rem;
 }
 
+.exabeam-header {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .hidden {
   display: none;
 }
