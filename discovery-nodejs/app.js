@@ -54,6 +54,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+app.get('/search', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'search.html'));
+});
+
 app.get('/api/trends', (req, res) => {
   const companies = Object.values(req.query)
   googleTrends.interestOverTime({keyword:companies , startTime: new Date(Date.now() - (12 * 30 * 24 * 60 * 60 * 1000))})
