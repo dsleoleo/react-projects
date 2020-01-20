@@ -8,10 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TablePagination from '@material-ui/core/TablePagination';
 import negative from '../assets/negative';
 import positive from '../assets/positive';
-import response_rate from '../assets/reponse_rate_vs_product.png';
 import ReactWordCloud from 'react-wordcloud';
 
 
