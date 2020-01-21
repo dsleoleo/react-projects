@@ -34,7 +34,7 @@ export default class RatingChart extends Component {
             <div>
                 {!this.state.hasLoaded ? (
                     this.setState({ data: this.generateBarData(), hasLoaded: true })) :
-                    <ResponsiveContainer width={600} height={500}>
+                    <ResponsiveContainer width={400} height={300}>
                         <BarChart
                             data={this.state.data}
                             barSize="3"

@@ -35,10 +35,10 @@ export default class ResponseChart extends Component {
             <div>
                 {!this.state.hasLoaded ? (
                     this.setState({ data: this.generateBarData(), hasLoaded: true })) :
-                    <ResponsiveContainer width={600} height={500}>
+                    <ResponsiveContainer width={400} height={300}>
                         <ScatterChart width={600} height={300} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                             <CartesianGrid />
-                            <XAxis type="number" dataKey={'response time'} name='response time' unit='seconds' />
+                            <XAxis type="number" dataKey={'response time'} name='response time'  />
                             <YAxis type="number" dataKey={'product rating'} name='product rating' domain={[0,5]} />
 
                             <Tooltip cursor={{ strokeDasharray: '3 3' }} />

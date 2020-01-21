@@ -161,7 +161,7 @@ export default class Review extends Component {
                             <br />
                             <br />
                             <div className="chart-box">
-                                <div style={{ height: 300, width: 800 }}>
+                                <div style={{ height: 300, width: 700 }}>
                                     <ReactWordCloud words={positive}
 
                                         options={{
@@ -182,7 +182,7 @@ export default class Review extends Component {
                                     />
                                 </div>
 
-                                <div style={{ height: 300, width: 800 }}>
+                                <div style={{ height: 300, width: 700 }}>
                                     <ReactWordCloud words={negative}
 
                                         options={{
