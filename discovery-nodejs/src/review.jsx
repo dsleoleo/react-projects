@@ -128,11 +128,6 @@ export default class Review extends Component {
                         <div className="table_main">
                             <br />
                             <br />
-                            <div className="chart-box">
-                                <ResponseChart />
-                                <RatingChart />
-                                <SentimentBarGraph />
-                            </div>
                             <TableContainer component={Paper}>
                                 <Table className={this.classes.table} aria-label="simple table">
                                     <TableHead>
@@ -154,6 +149,17 @@ export default class Review extends Component {
                                 </Table>
 
                             </TableContainer>
+                            <br />
+                            <br />
+                            <br />
+                            <div className="chart-box">
+                                <ResponseChart />
+                                <RatingChart />
+                                <SentimentBarGraph />
+                            </div>
+                            <br />
+                            <br />
+                            <br />
                             <div className="chart-box">
                                 <div style={{ height: 300, width: 800 }}>
                                     <ReactWordCloud words={positive}
