@@ -130,6 +130,12 @@ export default class Demo extends Component {
     window.scrollTo(100, 344);
   };
 
+  createQuery = (text) => {
+    var obj = {};
+    obj["text"] = text;
+    return obj;
+  }
+
   render() {        
     return (
       <div className="demo-container--div">
@@ -182,12 +188,12 @@ export default class Demo extends Component {
             </div>
 
           <div className="horizontal_box">            
-          {this.state.data.map(data => 
+          {[...Array(this.state.data.length).keys()].map(id => 
             
             <div className="results--panel-3">
               <MentionsAndSentiments
-                query={this.state.query}
-                mentions={data.mentions}
+                query={this.createQuery(this.state.query.text.split(",")[id])}
+                mentions={this.state.data[id].mentions}
               />
             </div>
           
