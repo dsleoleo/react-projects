@@ -5,8 +5,9 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    LineChart,
-    Line,
+    ScatterChart,
+    Scatter,
+    ZAxis,
     Legend,
 } from 'recharts';
 import ratings from '../ratings.js';
@@ -18,8 +19,16 @@ export default class ResponseChart extends Component {
     }
 
     generateBarData = () => {
-
         return ratings;
+    }
+    getTrendData = () => {
+        return [
+            { "response time": 100, "product rating": 3.3 },
+            { "response time": 150, "product rating": 3.4 },
+            { "response time": 500, "product rating": 3.5 },
+            { "response time": 1000, "product rating": 4.2 },
+            { "response time": 1500, "product rating": 4.5 },
+        ];
     }
 
     static defaultProps = {
@@ -32,16 +41,16 @@ export default class ResponseChart extends Component {
                 {!this.state.hasLoaded ? (
                     this.setState({ data: this.generateBarData(), hasLoaded: true })) :
                     <ResponsiveContainer width={500} height={250}>
-                        <LineChart width={600} height={300} data={this.state.data}
-                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                            <XAxis dataKey="response time" />
-                            <YAxis />
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <Tooltip />
+                        <ScatterChart width={600} height={300} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                            <CartesianGrid />
+                            <XAxis type="number" dataKey={'response time'} name='response time' unit='seconds' />
+                            <YAxis type="number" dataKey={'product rating'} name='product rating' unit='rating' />
+
+                            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                             <Legend />
-                            <Line type="monotone" dataKey="product rating" stroke="#8884d8" activeDot={{ r: 10 }} />
-                            
-                        </LineChart>
+                            <Scatter name='response time vs product ratings' data={this.state.data} fill='#8884d8' />
+                            <Scatter name='trend ' data={this.getTrendData()} fill='#e2237e' line shape="diamond" /> */}
+                        </ScatterChart>
                     </ResponsiveContainer>}
             </div>
         );
