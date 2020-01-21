@@ -35,7 +35,7 @@ export default class RatingChart extends Component {
             <div>
                 {!this.state.hasLoaded ? (
                     this.setState({ data: this.generateBarData(), hasLoaded: true })) :
-                    <ResponsiveContainer width={500} height={250}>
+                    <ResponsiveContainer width={600} height={500}>
                         <BarChart
                             data={this.state.data}
                             barSize="3"
@@ -56,7 +56,7 @@ export default class RatingChart extends Component {
                             <XAxis
                                 dataKey="category"
                             />
-                            <YAxis />
+                            <YAxis domain={[0,8]}/>
                             <Tooltip />
                             <Legend />
                             />
