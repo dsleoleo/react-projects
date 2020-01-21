@@ -733,6 +733,10 @@ html {
   display: flex;
 }
 
+.hidden-1 {
+  display: none;
+}
+
 .query--no-results-wrapper {
   width: 100%;
   text-align: center;
