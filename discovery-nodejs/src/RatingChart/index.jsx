@@ -21,8 +21,7 @@ export default class RatingChart extends Component {
         
 
         const final = [{"category" : "CS satisfaction", "rating" : 3.2}, 
-                       {"category" : "Product satisfaction", "rating" : 3.5}, 
-                       {"category" : "NPS response", "rating" : 6.2}];
+                       {"category" : "Product satisfaction", "rating" : 3.5}];
         return final;
     }
 
@@ -56,7 +55,7 @@ export default class RatingChart extends Component {
                             <XAxis
                                 dataKey="category"
                             />
-                            <YAxis domain={[0,8]}/>
+                            <YAxis domain={[0,5]} ticks={[0,1,2,3,4,5]}/>
                             <Tooltip />
                             <Legend />
                             />
