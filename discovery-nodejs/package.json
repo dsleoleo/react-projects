@@ -60,7 +60,7 @@
     "mocha": "^6.2.2",
     "phantomjs-prebuilt": "^2.1.14",
     "react-addons-test-utils": "^15.5.1",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^5.0.1",
     "react-test-renderer": "^16.11.0",
     "sinon": "^7.5.0",
     "supertest": "^4.0.2"
